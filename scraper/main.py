@@ -7,12 +7,14 @@ from .sites.base import BaseAdapter
 from .sites.generic_css import GenericCSSAdapter
 from .sites.immoweb import ImmowebAdapter
 from .sites.zimmo import ZimmoAdapter
+from sites.immoscoop_list import ImmoscoopListAdapter
 from .utils import now_utc_iso
 
 ADAPTERS = {
     "generic_css": GenericCSSAdapter,
     "immoweb": ImmowebAdapter,
     "zimmo": ZimmoAdapter,
+    "immoscoop_list": ImmoscoopListAdapter,   # <— deze regel toevoegen
 }
 
 ROOT = Path(__file__).resolve().parent
