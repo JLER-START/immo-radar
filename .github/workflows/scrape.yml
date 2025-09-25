@@ -28,7 +28,7 @@ jobs:
 
       - name: Run scrapers
         run: |
-          python scraper/main.py
+          python -m scraper.main
 
       - name: Commit & push updated data
         run: |
