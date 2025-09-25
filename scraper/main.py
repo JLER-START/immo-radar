@@ -3,11 +3,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Dict
 
-from sites.base import BaseAdapter
-from sites.generic_css import GenericCSSAdapter
-from sites.immoweb import ImmowebAdapter
-from sites.zimmo import ZimmoAdapter
-from utils import now_utc_iso
+from .sites.base import BaseAdapter
+from .sites.generic_css import GenericCSSAdapter
+from .sites.immoweb import ImmowebAdapter
+from .sites.zimmo import ZimmoAdapter
+from .utils import now_utc_iso
 
 ADAPTERS = {
     "generic_css": GenericCSSAdapter,
