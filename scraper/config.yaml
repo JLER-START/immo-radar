@@ -17,7 +17,7 @@ sites:
     start_urls:
       - "https://www.immoscoop.be/zoeken/te-koop/9340-oordegem,9230-westrem,lede,wetteren,wichelen/bouwgrond?fronts=open&maxPrice=325000"
     selectors:
-      list: "a[data-mobile-selector='property-card_card']"
+      list: "div[data-component='paginated-page-list_items'] a[href^='/te-koop/']"
       title: ".property-card_title::text"
       url: "::attr(href)"
       location: ".property-card_address::text"
