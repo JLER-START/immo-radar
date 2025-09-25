@@ -1,68 +1,17 @@
-# === Configuration ===
-# Timezone for date display and scheduling assumptions
-timezone: "Europe/Brussels"
-
-# Global search filters you care about (you can add more fields if you wish)
-filters:
-  keywords:
-    - "bouwgrond"
-    - "bouwperceel"
-    - "projectgrond"
-    - "huis met grote tuin"
-  locations:
-    - "Oost-Vlaanderen"
-    - "Vlaams-Brabant"
-  price_max_eur: 450000
-
-# Which sites to run. You can add new ones easily.
-sites:
-  # --- UITGESCHAKELD: voorbeeldsite gaf 404. Laat dit zo staan tot we echte selectors invullen ---
-  # - name: "VoorbeeldSite (config-gedreven)"
-  #   adapter: "generic_css"
-  #   start_urls:
-  #     - "https://example.com/immobilier?q=bouwgrond"
-  #   selectors:
-  #     list: ".listing-card"
-  #     title: ".title::text"
-  #     url: ".title a::attr(href)"
-  #     location: ".location::text"
-  #     price: ".price::text"
-  #     date_posted: ".date::text"
-  #     url_prefix: "https://example.com"
-  #   date_hints:
-  #     - "DD/MM/YYYY"
-  #     - "D MMM YYYY"
-  #     - "gisteren"
-  #     - "vandaag"
-
-  # --- KLAAR-OM-TE-GEBRUIKEN TEMPLATE (vervang door een echte site) ---
-  # Voorbeeld hoe je een eenvoudige site toevoegt. Vul de URL en selectors in.
-  # - name: "MIJNSITE — Bouwgrond"
-  #   adapter: "generic_css"
-  #   start_urls:
-  #     - "https://DOMEIN/JE-ZOEKPAGINA"
-  #   selectors:
-  #     list: "CSS_SELECTOR_VOOR_ELKE_KAART"
-  #     title: "CSS_TITEL::text"
-  #     url: "CSS_TITEL a::attr(href)"
-  #     location: "CSS_LOCATIE::text"
-  #     price: "CSS_PRIJS::text"
-  #     date_posted: "CSS_DATUM::text"
-  #     url_prefix: "https://DOMEIN"   # nodig als links met / beginnen
-  #   date_hints:
-  #     - "DD/MM/YYYY"
-  #     - "D MMM YYYY"
-  #     - "gisteren"
-  #     - "vandaag"
-
-  # Placeholders voor maatwerk-adapters (bewust nog niet actief)
-  - name: "Immoweb (voorbeeld adapter, nog te implementeren)"
-    adapter: "immoweb"
-    queries:
-      - "bouwgrond Oost-Vlaanderen"
-      - "huis grote tuin Vlaams-Brabant"
-
-  - name: "Zimmo (voorbeeld adapter, nog te implementeren)"
-    adapter: "zimmo"
-    queries:
-      - "bouwgrond Oosterzele"
+- name: "Immoscoop — Bouwgrond"
+  adapter: "generic_css"
+  start_urls:
+    - "https://www.immoscoop.be/zoeken/te-koop/op-kaart/bouwgrond?geoShape=cieh%2560BgqwkFjra%40fyrApwqAkhq%40kgq%40umaEscrAvcrA%2560%2560O%2560xlA&fronts=open&maxPrice=325000"
+  selectors:
+    list: "a[data-mobile-selector='property-card_card']"
+    title: ".property-card_title::text"
+    url: "::attr(href)"                          # href van het <a>-element zelf
+    location: ".property-card_address::text"
+    price: ".property-card_price::text"
+    # date_posted is niet altijd aanwezig, kan je weglaten
+    url_prefix: "https://www.immoscoop.be"
+  date_hints:
+    - "DD/MM/YYYY"
+    - "D MMM YYYY"
+    - "gisteren"
+    - "vandaag"
