@@ -1,17 +1,44 @@
-- name: "Immoscoop — Bouwgrond"
-  adapter: "generic_css"
-  start_urls:
-    - "https://www.immoscoop.be/zoeken/te-koop/op-kaart/bouwgrond?geoShape=cieh%2560BgqwkFjra%40fyrApwqAkhq%40kgq%40umaEscrAvcrA%2560%2560O%2560xlA&fronts=open&maxPrice=325000"
-  selectors:
-    list: "a[data-mobile-selector='property-card_card']"
-    title: ".property-card_title::text"
-    url: "::attr(href)"                          # href van het <a>-element zelf
-    location: ".property-card_address::text"
-    price: ".property-card_price::text"
-    # date_posted is niet altijd aanwezig, kan je weglaten
-    url_prefix: "https://www.immoscoop.be"
-  date_hints:
-    - "DD/MM/YYYY"
-    - "D MMM YYYY"
-    - "gisteren"
-    - "vandaag"
+# === Configuration ===
+timezone: "Europe/Brussels"
+
+filters:
+  keywords:
+    - "bouwgrond"
+    - "bouwperceel"
+    - "projectgrond"
+    - "huis met grote tuin"
+  locations:
+    - "Oost-Vlaanderen"
+    - "Vlaams-Brabant"
+  price_max_eur: 450000
+
+sites:
+  - name: "Immoscoop — Bouwgrond"
+    adapter: "generic_css"
+    start_urls:
+      - "https://www.immoscoop.be/zoeken/te-koop/op-kaart/bouwgrond?geoShape=cieh%2560BgqwkFjra%40fyrApwqAkhq%40kgq%40umaEscrAvcrA%2560%2560O%2560xlA&fronts=open&maxPrice=325000"
+    selectors:
+      list: "a[data-mobile-selector='property-card_card']"
+      title: ".property-card_title::text"
+      url: "::attr(href)"
+      location: ".property-card_address::text"
+      price: ".property-card_price::text"
+      url_prefix: "https://www.immoscoop.be"
+    date_hints:
+      - "DD/MM/YYYY"
+      - "D MMM YYYY"
+      - "gisteren"
+      - "vandaag"
+
+  # voeg extra sites hieronder toe, telkens met "- name: ..."
+  # - name: "Makelaarsite X — Bouwgrond"
+  #   adapter: "generic_css"
+  #   start_urls:
+  #     - "https://www.makelaarsitex.be/te-koop/bouwgrond"
+  #   selectors:
+  #     list: ".property-card"
+  #     title: ".property-title::text"
+  #     url: ".property-title a::attr(href)"
+  #     location: ".property-location::text"
+  #     price: ".property-price::text"
+  #     url_prefix: "https://www.makelaarsitex.be"
