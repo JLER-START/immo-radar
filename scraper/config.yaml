@@ -30,15 +30,20 @@ sites:
       - "gisteren"
       - "vandaag"
 
-  # voeg extra sites hieronder toe, telkens met "- name: ..."
-  # - name: "Makelaarsite X — Bouwgrond"
-  #   adapter: "generic_css"
-  #   start_urls:
-  #     - "https://www.makelaarsitex.be/te-koop/bouwgrond"
-  #   selectors:
-  #     list: ".property-card"
-  #     title: ".property-title::text"
-  #     url: ".property-title a::attr(href)"
-  #     location: ".property-location::text"
-  #     price: ".property-price::text"
-  #     url_prefix: "https://www.makelaarsitex.be"
+ - name: "Immoscoop — Bouwgrond (lijst)"
+  adapter: "generic_css"
+  start_urls:
+    - "https://www.immoscoop.be/zoeken/te-koop/9340-oordegem,9230-westrem,lede,wetteren,wichelen/bouwgrond?fronts=open&maxPrice=325000"
+  selectors:
+    # Het kaartje is een <a>; deze pakt elk pandkaartje
+    list: "a[data-mobile-selector='property-card_card']"
+    title: ".property-card_title::text"
+    url: "::attr(href)"                 # href van het <a>-element zelf
+    location: ".property-card_address::text"
+    price: ".property-card_price::text"
+    url_prefix: "https://www.immoscoop.be"
+  date_hints:
+    - "DD/MM/YYYY"
+    - "D MMM YYYY"
+    - "gisteren"
+    - "vandaag"
