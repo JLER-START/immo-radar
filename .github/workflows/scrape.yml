@@ -1,0 +1,39 @@
+name: Scrape 2x per day
+
+on:
+  schedule:
+    # GitHub gebruikt UTC-tijd → dit komt overeen met ~07:05 en ~19:05 Brussel-tijd
+    - cron: '5 5,17 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scraper/requirements.txt
+
+      - name: Run scrapers
+        run: |
+          python scraper/main.py
+
+      - name: Commit & push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scraper/output/listings.json frontend/data/listings.json
+          git diff --staged --quiet || git commit -m "Update listings [skip ci]"
+          git push
