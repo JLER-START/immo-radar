@@ -27,12 +27,13 @@ class GenericCSSAdapter(BaseAdapter):
             cards = soup.select(sel.get("list")) if sel.get("list") else []
             for card in cards:
                 # Helper to extract either text or attr from "selector::type"
-                def pick(selector):
+                                def pick(selector):
                     if not selector:
                         return None
                     if "::" in selector:
                         css, kind = selector.split("::", 1)
-                        el = card.select_one(css)
+                        # Nieuw: als er geen css vóór '::' staat, gebruik dan het kaart-element zelf
+                        el = card if not css.strip() else card.select_one(css)
                         if not el:
                             return None
                         if kind == "text":
@@ -41,7 +42,6 @@ class GenericCSSAdapter(BaseAdapter):
                             attr = kind[5:-1]
                             return el.get(attr)
                         if kind.startswith("attr"):
-                            # e.g., ::attr(href)
                             start = kind.find("(")+1
                             end = kind.rfind(")")
                             attr = kind[start:end]
