@@ -1,0 +1,28 @@
+[
+  {
+    "uid": "demo1",
+    "title": "Bouwgrond van 800m² met zuidtuin",
+    "url": "https://example.com/listing/123",
+    "location": "Oosterzele",
+    "price_eur": 210000,
+    "date_posted_raw": "24/09/2025",
+    "date_posted_iso": "2025-09-24T10:00:00+00:00",
+    "source": "VoorbeeldSite (config-gedreven)",
+    "scraped_at": "2025-09-25T07:17:11.783101Z",
+    "first_seen": "2025-09-25T07:17:11.783124Z",
+    "last_seen": "2025-09-25T07:17:11.783127Z"
+  },
+  {
+    "uid": "demo2",
+    "title": "Projectgrond 2.400m², centraal gelegen",
+    "url": "https://example.com/listing/456",
+    "location": "Wetteren",
+    "price_eur": 395000,
+    "date_posted_raw": "Gisteren",
+    "date_posted_iso": "2025-09-24T08:00:00+00:00",
+    "source": "VoorbeeldSite (config-gedreven)",
+    "scraped_at": "2025-09-25T07:17:11.783130Z",
+    "first_seen": "2025-09-25T07:17:11.783132Z",
+    "last_seen": "2025-09-25T07:17:11.783134Z"
+  }
+]

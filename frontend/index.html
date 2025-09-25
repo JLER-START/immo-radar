@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Immo Radar — J&L</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Immo Radar <span class="muted">— J&L</span></h1>
+    <p class="muted">Automatisch 2× per dag geüpdatet. Klik op een kaart voor de originele advertentie.</p>
+    <div class="filters">
+      <input id="q" placeholder="Zoek in titel/locatie…" />
+      <select id="sort">
+        <option value="posted_desc">Nieuwste plaatsing</option>
+        <option value="first_seen_desc">Recent ontdekt</option>
+        <option value="price_asc">Prijs ↑</option>
+        <option value="price_desc">Prijs ↓</option>
+      </select>
+      <button id="reset">Reset</button>
+    </div>
+  </header>
+
+  <main id="grid" class="grid"></main>
+
+  <footer>
+    <small>
+      Gemaakt met ❤️ door Jens (en ChatGPT). Data wordt lokaal gefilterd — niets wordt naar derden gestuurd.
+    </small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

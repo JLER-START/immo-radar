@@ -1,0 +1,51 @@
+# === Configuration ===
+# Timezone for date display and scheduling assumptions
+timezone: "Europe/Brussels"
+
+# Global search filters you care about (you can add more fields if you wish)
+filters:
+  keywords:
+    - "bouwgrond"
+    - "bouwperceel"
+    - "projectgrond"
+    - "huis met grote tuin"
+  locations:
+    - "Oost-Vlaanderen"
+    - "Vlaams-Brabant"
+  price_max_eur: 450000
+
+# Which sites to run. You can add new ones easily.
+sites:
+  # A config-driven adapter that works on simple list pages (static HTML).
+  # Replace 'https://example.com/search?q=...' with a real URL that shows multiple results.
+  - name: "VoorbeeldSite (config-gedreven)"
+    adapter: "generic_css"
+    start_urls:
+      - "https://example.com/immobilier?q=bouwgrond"
+    # How to find items on the page and extract fields (CSS selectors)
+    selectors:
+      list: ".listing-card"         # selector for each card
+      title: ".title::text"
+      url: ".title a::attr(href)"
+      location: ".location::text"
+      price: ".price::text"
+      date_posted: ".date::text"
+      # Optional: normalize url by prefixing with domain when needed
+      url_prefix: "https://example.com"
+    # Optional: map date formats if the site shows e.g. "Gisteren", "Vandaag", "2 dagen geleden"
+    date_hints:
+      - "DD/MM/YYYY"
+      - "D MMM YYYY"
+      - "gisteren"
+      - "vandaag"
+
+  # Placeholders for custom adapters you (or I) can later implement
+  - name: "Immoweb (voorbeeld adapter, nog te implementeren)"
+    adapter: "immoweb"
+    queries:
+      - "bouwgrond Oost-Vlaanderen"
+      - "huis grote tuin Vlaams-Brabant"
+  - name: "Zimmo (voorbeeld adapter, nog te implementeren)"
+    adapter: "zimmo"
+    queries:
+      - "bouwgrond Oosterzele"
